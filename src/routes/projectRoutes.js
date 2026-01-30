@@ -1,4 +1,5 @@
 const express = require("express");
+const taskRoutes = require("./taskRoutes");
 const { protect } = require("../middleware/authMiddleware");
 const {
   createProject,
@@ -17,6 +18,9 @@ const router = express.Router();
 
 // Create a project + Get all my projects
 router.route("/").post(protect, createProject).get(protect, getMyProjects);
+
+// Nested task routes 
+router.use("/:projectId/tasks", taskRoutes);
 
 // Get/Update/Delete one project by ID
 router
