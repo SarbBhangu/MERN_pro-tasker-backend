@@ -19,7 +19,7 @@ const registerUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
-    // 1) Basic validation 
+    // 1) validation 
     if (!name || !email || !password) {
       return res.status(400).json({
         message: "Please provide name, email, and password",
@@ -69,12 +69,55 @@ const registerUser = async (req, res) => {
 // ==============================
 // Login User
 // ==============================
-// This function will handle logging in an existing user
+// Logs in an existing user
 const loginUser = async (req, res) => {
-  res.status(200).json({
-    message: "Login route works",
-  });
+  try {
+    const { email, password } = req.body;
+
+    // 1) validation
+    if (!email || !password) {
+      return res.status(400).json({
+        message: "Please provide email and password",
+      });
+    }
+
+    // 2) Find user by email
+    const user = await User.findOne({ email: email.toLowerCase() });
+
+    if (!user) {
+      return res.status(401).json({
+        message: "Invalid email or password",
+      });
+    }
+
+    // 3) Compare passwords 
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (!isMatch) {
+      return res.status(401).json({
+        message: "Invalid email or password",
+      });
+    }
+
+    // 4) Successful login: return token + safe user info
+    return res.status(200).json({
+      message: "Login successful",
+      token: generateToken(user._id),
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+      },
+    });
+  } catch (error) {
+    console.error("Login error:", error.message);
+
+    return res.status(500).json({
+      message: "Server error during login",
+    });
+  }
 };
+
 
 module.exports = {
   registerUser,
