@@ -3,8 +3,6 @@
 Pro-Tasker is a full-stack project management application built using the MERN stack.  
 This repository contains the **backend API**, which handles authentication, authorization, projects, and tasks.
 
-The backend is designed with **security, clarity, and beginner-friendly structure** in mind.
-
 ---
 
 ##  Features (Backend)
@@ -73,4 +71,12 @@ GET    /api/projects - Get all projects for logged-in user
 GET    /api/projects/:id - Get a single project
 PUT    /api/projects/:id - Update a project
 DELETE /api/projects/:id - Delete a project
+```
+###  Task Routes (Nested Under Projects)
+
+```http
+POST   /api/projects/:projectId/tasks - Create a task for a project
+GET    /api/projects/:projectId/tasks - Get all tasks for a project
+PUT    /api/projects/:projectId/tasks/:taskId - Update a task
+DELETE /api/projects/:projectId/tasks/:taskId - Delete a task
 ```
