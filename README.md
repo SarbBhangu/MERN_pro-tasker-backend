@@ -5,6 +5,26 @@ This repository contains the **backend API**, which handles authentication, auth
 
 ---
 
+## Live Application
+
+**Frontend GitHub Repo**
+https://github.com/SarbBhangu/MERN_pro-tasker-frontend
+
+**Frontend (Live App):**  
+https://mern-pro-tasker-frontend.onrender.com
+
+**Backend API:**  
+https://mern-pro-tasker-backend.onrender.com
+
+## 🎥 Project Presentation
+
+A short walkthrough of the Pro-Tasker application, including frontend functionality, backend architecture, and security considerations.
+
+▶️ Watch the presentation (Unlisted YouTube link):  
+https://youtu.be/vlciZ4A-0-I
+
+---
+
 ##  Features (Backend)
 
 - User registration and login
